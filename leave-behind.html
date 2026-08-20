@@ -237,6 +237,19 @@
       color: var(--ink);
       display: inline-block;
     }
+    html.is-embed,
+    html.is-embed body {
+      background: transparent;
+      margin: 0;
+      padding: 0;
+    }
+    html.is-embed .toolbar { display: none; }
+    html.is-embed .sheet {
+      margin: 0;
+      box-shadow: none;
+      width: 8.5in;
+      min-height: 11in;
+    }
   </style>
 </head>
 <body>
@@ -344,5 +357,11 @@
       </div>
     </footer>
   </article>
+  <script>
+  (function () {
+    var embed = window.self !== window.top || /(?:^|[?&])embed=1(?:&|$)/.test(location.search);
+    if (embed) document.documentElement.classList.add("is-embed");
+  })();
+  </script>
 </body>
 </html>
