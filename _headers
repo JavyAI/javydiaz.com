@@ -1,2 +1,7 @@
 /site.webmanifest
   Content-Type: application/manifest+json; charset=utf-8
+
+/Javier_Diaz_Leave_Behind.pdf
+  Content-Type: application/pdf
+  Content-Disposition: attachment; filename="Javier_Diaz_Leave_Behind.pdf"
+  Cache-Control: public, max-age=3600
