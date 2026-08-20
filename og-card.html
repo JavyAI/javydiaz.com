@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OG Share Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background: #0c1214;
+      color: #fbf8f1;
+      font-family: "Source Sans 3", system-ui, sans-serif;
+    }
+    .card {
+      width: 1200px;
+      height: 630px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 0.92fr;
+      align-items: center;
+      padding: 52px 48px 52px 56px;
+      gap: 8px;
+    }
+    .bg {
+      position: absolute;
+      inset: 0;
+      background:
+        url("og-bg-current.jpg") center/cover no-repeat;
+    }
+    .bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg,
+          rgba(10, 12, 12, 0.78) 0%,
+          rgba(10, 12, 12, 0.52) 28%,
+          rgba(10, 12, 12, 0.18) 52%,
+          rgba(10, 12, 12, 0.08) 72%,
+          rgba(10, 12, 12, 0.22) 100%),
+        linear-gradient(180deg, rgba(10,12,12,0.18), transparent 22%, transparent 78%, rgba(10,12,12,0.28));
+    }
+    .left, .right { position: relative; z-index: 2; }
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 34rem;
+    }
+    .kicker {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #e36a52;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 72px;
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 0.92;
+      color: #fbf8f1;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+    }
+    h1::after {
+      content: "";
+      display: block;
+      width: 4.4rem;
+      height: 3px;
+      margin: 16px 0 18px;
+      background: #b84732;
+      border-radius: 2px;
+    }
+    .pitch {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 28px;
+      font-weight: 500;
+      font-style: italic;
+      letter-spacing: -0.02em;
+      line-height: 1.22;
+      max-width: 16ch;
+      color: rgba(251, 248, 241, 0.92);
+    }
+    .proof {
+      margin-top: 22px;
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(251, 248, 241, 0.72);
+      letter-spacing: -0.01em;
+    }
+    .proof b { color: #f3c2b6; font-weight: 700; }
+    .url {
+      margin-top: 20px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: rgba(251, 248, 241, 0.55);
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+    }
+    .frame {
+      position: relative;
+      width: 448px;
+      height: 448px;
+    }
+    .frame img {
+      width: 448px;
+      height: 448px;
+      object-fit: cover;
+      border-radius: 22px;
+      box-shadow:
+        0 1px 0 rgba(251, 248, 241, 0.16),
+        0 32px 70px rgba(0, 0, 0, 0.5);
+    }
+    .chip {
+      position: absolute;
+      right: -10px;
+      bottom: 26px;
+      background: #16140f;
+      color: #fbf8f1;
+      border-radius: 14px;
+      padding: 12px 16px 10px;
+      border-left: 4px solid #b84732;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+      min-width: 138px;
+    }
+    .chip .n {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .chip .l {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(251, 248, 241, 0.58);
+      margin-top: 4px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="left">
+      <p class="kicker">Physical product · Systems that hold</p>
+      <h1>Javier Diaz</h1>
+      <p class="pitch">I build the systems that calm the riptide.</p>
+      <p class="proof"><b>~$710M</b> returned · 90th service · logistics −17%</p>
+      <p class="url">javydiaz.com · @JavyDiaz</p>
+    </div>
+    <div class="right">
+      <div class="frame">
+        <img src="javier-portrait-hero.png" width="448" height="448" alt="Javier Diaz">
+        <div class="chip">
+          <div class="n">~$710M</div>
+          <div class="l">cash freed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Javier Diaz — Leave-behind</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Source+Code+Pro:wght@600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #16140f;
+      --paper: #fbf8f1;
+      --muted: #5c574e;
+      --line: #ddd6c8;
+      --coral: #b84732;
+      --teal: #2c5f61;
+      --display: "Newsreader", Georgia, serif;
+      --body: "Source Sans 3", system-ui, sans-serif;
+      --figure: "Source Code Pro", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page {
+      size: letter;
+      margin: 0.48in 0.52in 0.45in 0.52in;
+    }
+    body {
+      font-family: var(--body);
+      background: #e8e2d4;
+      color: var(--ink);
+      font-size: 10.25pt;
+      line-height: 1.38;
+      -webkit-font-smoothing: antialiased;
+    }
+    .sheet {
+      width: min(8.5in, 100%);
+      min-height: 11in;
+      margin: 1rem auto;
+      background: var(--paper);
+      padding: 0.55in 0.6in 0.5in;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    @media print {
+      html, body {
+        background: #fff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        margin: 0 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+      }
+      .no-print { display: none !important; }
+      a { color: inherit !important; text-decoration: none !important; }
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      padding-bottom: 0.48rem;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 0.55rem;
+    }
+    .top h1 {
+      font-family: var(--display);
+      font-size: 17.5pt;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    .top .role {
+      font-size: 8.75pt;
+      color: var(--muted);
+      margin-top: 0.14rem;
+    }
+    .contact {
+      text-align: right;
+      font-size: 8.25pt;
+      color: var(--muted);
+      line-height: 1.42;
+    }
+    .contact a { color: var(--ink); text-decoration: none; font-weight: 600; }
+    .quote {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 12pt;
+      line-height: 1.3;
+      margin: 0.48rem 0 0.18rem;
+      color: var(--ink);
+    }
+    .quote-attr {
+      font-size: 7.25pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--line);
+      margin-bottom: 0.55rem;
+    }
+    .metrics div {
+      padding: 0.38rem 0.42rem;
+      border-right: 1px solid var(--line);
+    }
+    .metrics div:last-child { border-right: 0; }
+    .metrics b {
+      display: block;
+      font-family: var(--figure);
+      font-size: 12.25pt;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    .metrics span {
+      font-size: 7.4pt;
+      color: var(--muted);
+      line-height: 1.24;
+    }
+    .contact a {
+      white-space: nowrap;
+    }
+    .foot .email {
+      white-space: nowrap;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    h2 {
+      font-family: var(--body);
+      font-size: 7.75pt;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin: 0.48rem 0 0.3rem;
+      padding-bottom: 0.16rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .proof-eq {
+      font-family: var(--figure);
+      font-weight: 600;
+      font-size: 12.5pt;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
+    }
+    .proof-eq i { font-style: normal; color: var(--coral); margin: 0 0.25rem; }
+    .note { font-size: 8.25pt; color: var(--muted); margin-bottom: 0.3rem; line-height: 1.34; }
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+    .compare div {
+      border: 1px solid var(--line);
+      padding: 0.36rem 0.45rem;
+      font-size: 8.25pt;
+    }
+    .compare strong { display: block; font-family: var(--figure); font-size: 10.75pt; margin-bottom: 0.08rem; }
+    .compare .big { color: var(--coral); }
+    .offer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.36rem;
+      margin-bottom: 0.3rem;
+    }
+    .offer div {
+      border: 1px solid var(--line);
+      padding: 0.36rem 0.4rem;
+      font-size: 8.25pt;
+      line-height: 1.34;
+    }
+    .offer b {
+      display: block;
+      font-family: var(--body);
+      font-size: 8.75pt;
+      margin-bottom: 0.12rem;
+    }
+    .ninety {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.36rem;
+      font-size: 8.25pt;
+      line-height: 1.34;
+      margin-bottom: 0.3rem;
+    }
+    .ninety strong { display: block; font-size: 8.25pt; margin-bottom: 0.08rem; color: var(--teal); }
+    .exp { font-size: 8.15pt; line-height: 1.36; }
+    .exp p { margin-bottom: 0.26rem; }
+    .exp strong { font-weight: 700; }
+    /* One-page letter: long legal names wrap cleanly, no orphan foot */
+    .exp p:last-child { margin-bottom: 0; }
+    .foot {
+      margin-top: 0.48rem;
+      padding-top: 0.36rem;
+      border-top: 2px solid var(--ink);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 8.25pt;
+    }
+    .foot .cta { font-weight: 700; }
+    .toolbar {
+      text-align: center;
+      padding: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .toolbar button, .toolbar a {
+      font: inherit;
+      font-weight: 600;
+      margin: 0 0.35rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--ink);
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Print / Save as PDF</button>
+    <a href="Javier_Diaz_Leave_Behind.pdf">Download PDF</a>
+    <a href="./">Full site</a>
+  </div>
+
+  <article class="sheet">
+    <header class="top">
+      <div>
+        <h1>Javier Diaz</h1>
+        <p class="role">Operating systems for physical-product companies · SOPITA.GG · BingoBango.ai · EN / ES / PT</p>
+      </div>
+      <div class="contact">
+        <a href="mailto:javy@javydiaz.com?subject=Where%20ops%20is%20hitting&amp;body=Hi%20Javy%20%E2%80%94%0A%0AFound%20you%20on%20javydiaz.com.%20I%20need%20help%20calming%20ops%20chaos%20on%20physical%20product%20%E2%80%94%20cash%2C%20service%2C%20systems%20that%20hold.%0A%0AWhat%27s%20eating%20the%20week%20on%20my%20side%3A%0A%0A%0AWorth%20a%20conversation%3F">javy@javydiaz.com</a><br>
+        <a href="https://javydiaz.com">javydiaz.com</a><br>
+        <a href="tel:+12017263003">(201) 726-3003</a><br>
+        Lyndhurst, NJ · <a href="https://x.com/JavyDiaz">@JavyDiaz</a>
+      </div>
+    </header>
+
+    <p class="quote">“He builds the structure that calms the chaos, so leadership can grow the company.”</p>
+    <p class="quote-attr">I build the systems that calm the riptide · References on request</p>
+    <p class="note" style="margin-bottom:0.48rem">Founder of SOPITA.GG and BingoBango.ai. Physical product under real constraint. When exceptions hit from every angle, swimming harder isn’t a strategy — structure is. ~$710M is the sharpest proof, not the whole seat.</p>
+
+    <div class="metrics">
+      <div><b>~$710M</b><span>returned to the business<br>systems I designed</span></div>
+      <div><b>90th</b><span>%ile service held<br>while cutting cost</span></div>
+      <div><b>−17%</b><span>logistics cost<br>across the network</span></div>
+      <div><b>18+</b><span>decision systems<br>behind the method</span></div>
+    </div>
+
+    <h2>Proof</h2>
+    <p class="proof-eq">&gt;$900M <i>→</i> ~$190M &nbsp;·&nbsp; ≈79% &nbsp;·&nbsp; ~$710M unlocked</p>
+    <p class="note">Bed Bath &amp; Beyond Group · multi-banner · 16 DCs · &gt;$11B sales · systems designed 2014–2020</p>
+    <div class="compare">
+      <div>
+        <strong>20–35%</strong>
+        Published PE / consulting inventory program “success” band (12–18 mo). Industry range—not a peer survey.
+      </div>
+      <div>
+        <strong class="big">~79% · ~2–4× that band</strong>
+        On managed inventory I systemized. Dollar scale matches company-wide programs—not a SKU cleanup.
+      </div>
+    </div>
+    <p class="note">Also: Cra-Z-Art VP Global SC—$80M obsolete with no prior path (proof of drivers, not a ceiling; same method scales toward ~$800M-class books); ~150 SKUs/mo; multi-country / tariffs; COVID repurpose. Foundation: $140M OTB · 95% obsolete eliminated (Baker &amp; Taylor).</p>
+
+    <h2>What changes when we partner</h2>
+    <div class="offer">
+      <div>
+        <b>Room to lead</b>
+        I take the riptides (stockouts, excess, “where is the cash?”) and install cadence. You return to people, product, and vision.
+      </div>
+      <div>
+        <b>Cash free + network tight</b>
+        Free cash without starving live SKUs. Compress waste (logistics −17%). Structure that holds as the book grows.
+      </div>
+      <div>
+        <b>Service held + room to expand</b>
+        90th %ile under pressure. Encode cadence so the team can run it. Scoreboard: cash free, service held, hours returned.
+      </div>
+    </div>
+
+    <h2>First 90 days</h2>
+    <div class="ninety">
+      <div>
+        <strong>1–30 · Listen &amp; map</strong>
+        Cash, service, network, planning gaps, exceptions still on you. Truth with respect—risk, hours, hope.
+      </div>
+      <div>
+        <strong>31–60 · Clear &amp; protect</strong>
+        Move what should move. Protect core service and funder SKUs. Light cadence the team can keep.
+      </div>
+      <div>
+        <strong>61–90 · Encode &amp; free you</strong>
+        Parameters, algorithms, automation on tools you already pay for. Scoreboard: cash free, waste down, hours returned, service held.
+      </div>
+    </div>
+
+    <h2>Systems (how it scales)</h2>
+    <p class="exp">
+      <strong>18+ algorithms</strong> (forecast, turns, order efficiency, JIT, replenishment) — the layer behind the capital move.
+      <strong>AI / data:</strong> Claude Code and GitHub Copilot in the editor; LLMs for analysis; Python against Google Cloud SQL and MySQL (Dropbox where the team already files). Encode the method on the stack you already pay for.
+      Certifications (Anthropic, NVIDIA, Apple developer track) support live use. Cash, service, and network still lead.
+    </p>
+
+    <h2>Experience (one line each)</h2>
+    <div class="exp">
+      <p><strong>VP Global Supply Chain · Cra-Z-Art</strong> (2020–) · $80M obsolete · logistics −17% · 90th %ile service · Claude Code, Copilot, Python, Cloud SQL / MySQL · multi-country / tariffs · CEO-direct</p>
+      <p><strong>Sr. Manager, Replenishment · BBB Group</strong> (2014–2020) · 18+ algorithms · &gt;$900M → ~$190M managed inventory · 16 DCs</p>
+      <p><strong>Foundation (2006–2014)</strong> · <strong>Baker &amp; Taylor</strong>: $140M OTB · 95% obsolete eliminated · <strong>LaRose Industries, LLC d/b/a Cra-Z-Art</strong> · <strong>Children’s Place</strong> · CEO-direct early · EN / ES / PT</p>
+    </div>
+
+    <footer class="foot">
+      <div>
+        <span class="cta">Next:</span> Tell me the vision—and what is in the way.<br>
+        If I am the right partner, we talk. If not, I say so with respect.
+      </div>
+      <div style="text-align:right">
+        <span class="email">javy@javydiaz.com</span><br>
+        javydiaz.com · (201) 726-3003
+      </div>
+    </footer>
+  </article>
+</body>
+</html>
