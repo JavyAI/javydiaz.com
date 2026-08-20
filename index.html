@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Javier Diaz — systems that calm operational chaos</title>
   <meta name="description" content="Javier Diaz builds operating systems for physical-product companies: cash free, service held, teams that can scale. Proof: ~$710M returned, 90th %ile service, logistics −17%. EN / ES / PT.">
-  <!-- Safari theme / liquid-glass chrome: page shows through browser UI -->
-  <meta name="theme-color" content="#f5f0e6" id="themeColorMeta">
-  <meta name="theme-color" content="#f5f0e6" media="(prefers-color-scheme: light)" id="themeColorLight">
-  <meta name="theme-color" content="#16140f" media="(prefers-color-scheme: dark)" id="themeColorDark">
+  <meta name="theme-color" content="#f5f0e6">
   <meta name="color-scheme" content="light">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Javier Diaz">
   <meta name="author" content="Javier Diaz">
   <link rel="canonical" href="https://javydiaz.com/">
@@ -127,7 +124,6 @@
     p { text-wrap: pretty; }
 
 
-    /* Safari 26 samples html/body + edge-fixed backgrounds, not theme-color */
     html {
       background-color: var(--bg);
       min-height: 100%;
@@ -137,28 +133,6 @@
       min-height: 100%;
       min-height: 100dvh;
       background-color: var(--bg);
-      /* top safe area so content isn’t trapped under status bar when translucent */
-      padding-top: env(safe-area-inset-top);
-    }
-    .safari-tint {
-      position: fixed;
-      left: 0;
-      width: 100%;
-      height: 8px;
-      pointer-events: none;
-      opacity: 0;
-      z-index: 4;
-      background-color: var(--bg);
-    }
-    .safari-tint--top { top: 0; }
-    .safari-tint--bottom { bottom: 0; }
-    html.safari-peek .nav,
-    html.safari-peek .nav *,
-    html.safari-peek .sticky,
-    html.safari-peek .sticky *,
-    html.safari-peek .story-rail,
-    html.safari-peek .story-rail * {
-      pointer-events: none !important;
     }
 
     .skip {
@@ -171,31 +145,18 @@
     .nav {
       position: fixed; inset: 0 0 auto 0; z-index: 50;
       display: flex; align-items: center; justify-content: space-between;
-      height: calc(3.4rem + env(safe-area-inset-top));
-      padding: env(safe-area-inset-top) var(--gutter) 0;
-      background: transparent;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+      height: 3.4rem;
+      padding: 0 var(--gutter);
+      background: var(--bg);
+      border-bottom: 1px solid var(--line-soft);
+      transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
     }
-    .nav-glass {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: color-mix(in srgb, var(--bg) 72%, transparent);
-      backdrop-filter: saturate(180%) blur(24px);
-      -webkit-backdrop-filter: saturate(180%) blur(24px);
-      transition: background 0.25s var(--ease);
-    }
-    .nav.scrolled { border-bottom-color: var(--line-soft); }
-    .nav.scrolled .nav-glass {
-      background: color-mix(in srgb, var(--bg) 92%, transparent);
-    }
+    .nav-glass { display: none; }
     .nav-brand,
     .nav-links { position: relative; z-index: 1; }
-    .nav.is-night { border-bottom-color: rgba(251, 248, 241, 0.08); }
-    .nav.is-night .nav-glass {
-      background: color-mix(in srgb, var(--ink) 78%, transparent);
+    .nav.is-night {
+      background: var(--ink);
+      border-bottom-color: rgba(251, 248, 241, 0.12);
     }
     .nav.is-night .nav-brand { color: #fbf8f1; }
     .nav.is-night .nav-links a { color: rgba(251, 248, 241, 0.62); }
@@ -1856,23 +1817,15 @@
     .sticky {
       display: none;
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
-      padding: 0.65rem 0.75rem calc(0.65rem + env(safe-area-inset-bottom));
-      background: transparent;
-      border-top: 1px solid var(--line-soft);
+      padding: 0.65rem 0.75rem;
+      background: var(--bg);
+      border-top: 1px solid var(--line);
     }
-    .sticky-glass {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: color-mix(in srgb, var(--bg) 92%, transparent);
-      backdrop-filter: saturate(160%) blur(16px);
-      -webkit-backdrop-filter: saturate(160%) blur(16px);
-    }
+    .sticky-glass { display: none; }
     .sticky-row { position: relative; z-index: 1; }
-    .sticky.is-night { border-top-color: rgba(251, 248, 241, 0.12); }
-    .sticky.is-night .sticky-glass {
-      background: color-mix(in srgb, var(--ink) 88%, transparent);
+    .sticky.is-night {
+      background: var(--ink);
+      border-top-color: rgba(251, 248, 241, 0.16);
     }
     .sticky-row {
       display: grid;
@@ -2887,7 +2840,7 @@
         grid-template-columns: 1fr;
         gap: 1.75rem;
         text-align: left;
-        padding-bottom: calc(6rem + env(safe-area-inset-bottom));
+        padding-bottom: 6rem;
       }
     }
 
@@ -2895,9 +2848,6 @@
 </head>
 <body>
   <a class="skip" href="#contact">Skip to contact</a>
-
-  <div class="safari-tint safari-tint--top" id="safariTintTop" aria-hidden="true"></div>
-  <div class="safari-tint safari-tint--bottom" id="safariTintBot" aria-hidden="true"></div>
 
   <nav class="nav" id="nav">
     <span class="nav-glass" aria-hidden="true"></span>
@@ -2985,16 +2935,11 @@
     </div>
   </header>
 
-  <section class="quote quote--wash" aria-label="How founders introduce me">
+  <section class="quote quote--wash" aria-label="What I do">
     <div class="wrap quote-inner">
       <blockquote class="reveal">
-        <p>"He builds the structure that calms the chaos — so leadership can grow the company."</p>
+        <p>"He builds the structure that calms the chaos so leadership can grow the company."</p>
       </blockquote>
-      <div class="quote-meta reveal d1">
-        <span>How to introduce me</span>
-        <span class="sep" aria-hidden="true">·</span>
-        <span>References available</span>
-      </div>
     </div>
   </section>
 
@@ -3003,10 +2948,10 @@
       <div class="sec-head">
         <div>
           <p class="kicker reveal">Proof</p>
-          <h2 class="reveal d1">See the method. Then diligence the rest.</h2>
+          <h2 class="reveal d1">The book moved. Service held.</h2>
         </div>
         <p class="intro reveal d1">
-          One interactive scrub: how a real book moved. Ask after: <strong>did service hold, did cost fall, can the team run it without him?</strong>
+          Managed inventory I systemized: <strong>&gt;$900M to ~$190M</strong>. About ~$710M returned to the business. Drag the bar, or hit play.
         </p>
       </div>
 
@@ -3014,12 +2959,11 @@
       <div class="compressor reveal" id="compressor">
         <div class="compressor-top">
           <div>
-            <p class="kicker">Interactive · drag or play</p>
+            <p class="kicker">BBB Group · 16 DCs · 2014–2020</p>
             <h3 class="compressor-title">Watch ~$710M come free.</h3>
           </div>
           <p class="compressor-note">
-            Managed inventory I systemized: <strong>&gt;$900M → ~$190M</strong>.
-            Not a fire sale. Compare live to a published PE “success” band of 20–35% — this book landed ~2–4× that.
+            Not a fire sale. Service held at the 90th percentile while the book compressed.
           </p>
         </div>
 
@@ -3058,14 +3002,6 @@
             </div>
             <span class="amt accent" id="compAmtFreed">$0M</span>
           </div>
-          <div class="comp-row">
-            <span class="name">PE band ref.</span>
-            <div class="comp-track pe-track">
-              <div class="comp-fill pe"></div>
-              <span class="comp-pe-label">typical 20–35% program</span>
-            </div>
-            <span class="amt" id="compMult">—</span>
-          </div>
         </div>
 
         <div class="comp-controls">
@@ -3085,9 +3021,8 @@
               aria-label="Method progress: compress inventory and free working capital"
             >
             <div class="comp-ticks">
-              <span id="tick0">Start</span>
-              <span id="tickPe">PE band</span>
-              <span id="tickEnd" class="accent">~$710M free</span>
+              <span id="tick0">Start · $900M</span>
+              <span id="tickEnd" class="accent">~$190M on book</span>
             </div>
           </div>
           <button type="button" class="comp-play" id="compPlay" aria-label="Play capital reduction">
@@ -3099,15 +3034,15 @@
             Copy proof line
           </button>
         </div>
-        <p class="comp-done" id="compDone">Method complete · ~$710M free · ~2–4× PE band</p>
-        <p class="comp-foot">BBB Group · multi-banner · 16 DCs · 2014–2020 · managed inventory systems I designed</p>
+        <p class="comp-done" id="compDone">Done · ~$710M returned · 90th %ile service held</p>
+        <p class="comp-foot">BBB Group · multi-banner · 16 DCs · 2014–2020 · systems I designed</p>
       </div>
 
       <div class="end-state reveal">
         <p class="tag">End state · systems I designed</p>
         <div class="eq"><span>&gt;$900M</span><span class="arrow">→</span><span>~$190M</span></div>
-        <p class="sum">≈79% · ~$710M returned · <em>~2–4×</em> a published PE band (20–35%)</p>
-        <p class="meta">BBB Group · multi-banner · 16 DCs · 2014–2020. PE band is industry range, not a third-party audit of this book.</p>
+        <p class="sum">≈79% off the book · ~$710M returned · 90th %ile service held</p>
+        <p class="meta">BBB Group · multi-banner · 16 DCs · 2014–2020. Systems I designed.</p>
       </div>
       <div class="scoreboard reveal" id="scoreboard">
         <div id="proof-cash" data-proof-cell="cash"><b>~$710M</b><span>Cash free</span></div>
@@ -3627,81 +3562,45 @@
         railFill.style.height=pct+"%";
       }
     }
-    /* Safari 26 ignores theme-color. It samples edge-fixed backgrounds as you scroll. */
     (function(){
-      var meta=document.getElementById("themeColorMeta");
-      var metaLight=document.getElementById("themeColorLight");
-      var tintTop=document.getElementById("safariTintTop");
-      var tintBot=document.getElementById("safariTintBot");
       var sticky=document.querySelector(".sticky");
-      var PAPER="#f5f0e6";
-      var lastTop="";
-      var lastBot="";
       var ticking=false;
-      function rgbOf(el){
+      function lumOf(el){
         while(el && el!==document.documentElement){
-          if(el.id==="safariTintTop" || el.id==="safariTintBot"){ el=el.parentElement; continue; }
           var bg=getComputedStyle(el).backgroundColor;
           var m=bg && bg.match(/[\d.]+/g);
           if(m){
             var a=m[3]==null?1:+m[3];
-            if(a>=0.5) return [+m[0], +m[1], +m[2]];
+            if(a>=0.5){
+              return (0.2126*m[0]+0.7152*m[1]+0.0722*m[2])/255;
+            }
           }
           el=el.parentElement;
         }
-        return [245, 240, 230];
+        return 1;
       }
-      function hex(rgb){
-        return "#"+rgb.map(function(n){
-          var h=Math.max(0, Math.min(255, Math.round(n))).toString(16);
-          return h.length===1?"0"+h:h;
-        }).join("");
-      }
-      function lum(rgb){ return (0.2126*rgb[0]+0.7152*rgb[1]+0.0722*rgb[2])/255; }
-      function setMeta(h){
-        if(!meta) return;
-        if(meta.getAttribute("content")===h) return;
-        meta.setAttribute("content", h);
-        if(metaLight) metaLight.setAttribute("content", h);
-        var parent=meta.parentNode;
-        if(parent && /Safari/.test(navigator.userAgent) && !/Chrome|CriOS|FxiOS/.test(navigator.userAgent)){
-          var clone=meta.cloneNode(true);
-          clone.setAttribute("content", h);
-          parent.replaceChild(clone, meta);
-          meta=clone;
-          meta.id="themeColorMeta";
-        }
-      }
-      function syncTheme(){
+      function syncChrome(){
         ticking=false;
         var x=Math.round(window.innerWidth/2);
-        var yBot=Math.max(12, window.innerHeight-10);
-        document.documentElement.classList.add("safari-peek");
-        var topEl=document.elementFromPoint(x, 8);
+        var navH=nav?nav.getBoundingClientRect().height:54;
+        var topEl=document.elementFromPoint(x, navH+6);
+        var yBot=window.innerHeight-8;
+        if(sticky){
+          var sr=sticky.getBoundingClientRect();
+          if(sr.height>0 && sr.top<window.innerHeight) yBot=Math.max(navH+8, sr.top-20);
+        }
         var botEl=document.elementFromPoint(x, yBot);
-        document.documentElement.classList.remove("safari-peek");
-        var top=rgbOf(topEl);
-        var bot=rgbOf(botEl);
-        var topH=hex(top);
-        var botH=hex(bot);
-        if(tintTop && topH!==lastTop){ tintTop.style.backgroundColor=topH; lastTop=topH; }
-        if(tintBot && botH!==lastBot){ tintBot.style.backgroundColor=botH; lastBot=botH; }
-        setMeta(topH||PAPER);
-        if(nav) nav.classList.toggle("is-night", lum(top)<0.42);
-        if(sticky) sticky.classList.toggle("is-night", lum(bot)<0.42);
+        if(nav) nav.classList.toggle("is-night", lumOf(topEl)<0.42);
+        if(sticky) sticky.classList.toggle("is-night", lumOf(botEl)<0.42);
       }
-      function onThemeScroll(){
+      function onChromeScroll(){
         if(ticking) return;
         ticking=true;
-        requestAnimationFrame(syncTheme);
+        requestAnimationFrame(syncChrome);
       }
-      window.addEventListener("scroll", onThemeScroll, {passive:true});
-      window.addEventListener("resize", onThemeScroll, {passive:true});
-      if(window.visualViewport){
-        window.visualViewport.addEventListener("resize", onThemeScroll, {passive:true});
-        window.visualViewport.addEventListener("scroll", onThemeScroll, {passive:true});
-      }
-      syncTheme();
+      window.addEventListener("scroll", onChromeScroll, {passive:true});
+      window.addEventListener("resize", onChromeScroll, {passive:true});
+      syncChrome();
     })();
 
     window.addEventListener("scroll", onScroll, {passive:true});
@@ -3771,7 +3670,6 @@
       var barFreed = document.getElementById("compBarFreed");
       var elInv = document.getElementById("compInv");
       var elFreed = document.getElementById("compFreed");
-      var elMult = document.getElementById("compMult");
       var elInvSub = document.getElementById("compInvSub");
       var elFreedSub = document.getElementById("compFreedSub");
       var elPct = document.getElementById("compPct");
@@ -3782,7 +3680,6 @@
       var nodeFreed = document.getElementById("nodeFreed");
       var nodeMethod = document.getElementById("nodeMethod");
       var tick0 = document.getElementById("tick0");
-      var tickPe = document.getElementById("tickPe");
       var tickEnd = document.getElementById("tickEnd");
       if(!range || !barInv || !barFreed) return;
 
@@ -3791,7 +3688,6 @@
       var START = 900;
       var END = 190;
       var FREED_MAX = START - END;
-      var PE_MID = 0.275;
       var playing = false;
       var playToken = 0;
       var userGrabbed = false;
@@ -3825,7 +3721,6 @@
         if(nodeMethod) nodeMethod.classList.toggle("hot", t > 0.05 && t < 0.98);
 
         if(tick0) tick0.classList.toggle("on", t < 0.08);
-        if(tickPe) tickPe.classList.toggle("on", t >= 0.28 && t < 0.85);
         if(tickEnd) tickEnd.classList.toggle("on", t >= 0.9);
 
         if(root) root.classList.toggle("is-complete", complete);
@@ -3836,23 +3731,15 @@
         if(t < 0.02){
           elInvSub.textContent = "Start of the book";
           elFreedSub.textContent = "Still locked in stock";
-          if(elMult) elMult.textContent = "—";
           if(elPctSub) elPctSub.textContent = "Systems + cadence";
         } else if(complete){
           elInvSub.textContent = "Compressed base · ~$190M";
           elFreedSub.textContent = "Returned to the business";
-          if(elMult) elMult.textContent = "~2.9×";
-          if(elPctSub) elPctSub.textContent = "Full method · vs PE mid";
+          if(elPctSub) elPctSub.textContent = "Full method";
         } else {
           elInvSub.textContent = redPctShow + "% reduction so far";
           elFreedSub.textContent = "Working capital unlocked";
-          var mult = redPct / PE_MID;
-          if(elMult) elMult.textContent = mult < 0.15 ? "—" : ("~" + mult.toFixed(1) + "×");
-          if(elPctSub){
-            if(redPct < 0.20) elPctSub.textContent = "Inside PE band…";
-            else if(redPct < 0.35) elPctSub.textContent = "At PE ceiling…";
-            else elPctSub.textContent = "Beyond published band";
-          }
+          if(elPctSub) elPctSub.textContent = "Method in motion";
         }
       }
 
