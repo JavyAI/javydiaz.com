@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Javier Diaz — systems that calm operational chaos</title>
-  <meta name="description" content="Javier Diaz builds operating systems for physical-product companies: trapped capital freed, service held, teams that can scale. Proof: ~$710M returned, 90th %ile service, logistics −17%. EN / ES / PT.">
-  <meta name="theme-color" content="#f5f0e6">
+  <meta name="description" content="Javier Diaz builds operating systems for physical-product companies: trapped capital freed, service held, teams that can scale. Proof: ~$710M returned, 90th %ile service, logistics −17%. English, Spanish, Portuguese.">
+  <meta name="theme-color" content="#f5f0e6" id="themeColorMeta">
   <meta name="color-scheme" content="light">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Javier Diaz">
   <meta name="author" content="Javier Diaz">
   <link rel="canonical" href="https://javydiaz.com/">
@@ -45,7 +45,11 @@
         "addressRegion": "NJ",
         "addressCountry": "US"
       },
-      "knowsLanguage": ["en", "es", "pt"],
+      "knowsLanguage": [
+        { "@type": "Language", "name": "English", "alternateName": "en" },
+        { "@type": "Language", "name": "Spanish", "alternateName": "es" },
+        { "@type": "Language", "name": "Portuguese", "alternateName": "pt" }
+      ],
       "sameAs": [
         "https://x.com/JavyDiaz",
         "https://sopita.gg",
@@ -145,8 +149,8 @@
     .nav {
       position: fixed; inset: 0 0 auto 0; z-index: 50;
       display: flex; align-items: center; justify-content: space-between;
-      height: 3.4rem;
-      padding: 0 var(--gutter);
+      height: calc(3.4rem + env(safe-area-inset-top, 0px));
+      padding: env(safe-area-inset-top, 0px) var(--gutter) 0;
       background: var(--bg);
       border-bottom: 1px solid var(--line-soft);
       transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
@@ -245,7 +249,7 @@
     @media (max-width: 420px) {
       .nav-reach a { padding: 0 0.65rem; font-size: 0.78rem; min-height: 2rem; }
     }
-    section[id], header[id] { scroll-margin-top: 4rem; }
+    section[id], header[id] { scroll-margin-top: calc(3.6rem + env(safe-area-inset-top, 0px)); }
 
     /* Page gutters: padding on wrap (never override width to 100%) */
     .wrap {
@@ -298,7 +302,7 @@
     }
     @media (max-width: 860px) {
       .hero {
-        padding: calc(3.4rem + 1.1rem) 0 2rem;
+        padding: calc(3.4rem + env(safe-area-inset-top, 0px) + 1.1rem) 0 2rem;
       }
       .hero-grid {
         grid-template-columns: 1fr;
@@ -345,6 +349,13 @@
       transition: border-color 0.15s, color 0.15s;
     }
     .eyebrow a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .langs {
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--ink-2);
+      margin: -0.35rem 0 1rem;
+    }
 
     /* Trademark name: clip reveal + underline draw */
     .hero h1 {
@@ -1050,8 +1061,7 @@
       color: var(--accent);
       margin-bottom: 0.65rem;
     }
-    .section h2,
-    .resume-desk h2 {
+    .section h2 {
       font-family: var(--serif);
       font-size: clamp(1.75rem, 3.2vw, 2.35rem);
       font-weight: 500;
@@ -1061,8 +1071,7 @@
       max-width: none; /* use the column — don't stack short titles for style */
       text-wrap: balance;
     }
-    .section .intro,
-    .resume-desk .intro {
+    .section .intro {
       font-size: 1.1rem;
       color: var(--ink-3);
       max-width: 36rem; /* prose only */
@@ -1817,7 +1826,7 @@
     .sticky {
       display: none;
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
-      padding: 0.65rem 0.75rem;
+      padding: 0.65rem 0.75rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
       background: var(--bg);
       border-top: 1px solid var(--line);
     }
@@ -1826,6 +1835,15 @@
     .sticky.is-night {
       background: var(--ink);
       border-top-color: rgba(251, 248, 241, 0.16);
+    }
+    .sticky.is-night a.sticky-email {
+      background: #fbf8f1;
+      color: var(--ink);
+    }
+    .sticky.is-night a.sticky-call {
+      background: transparent;
+      color: #fbf8f1;
+      border-color: rgba(251,248,241,0.28);
     }
     .sticky-row {
       display: grid;
@@ -2488,7 +2506,7 @@
 
     /* Craft pass — quieter chrome, stronger type, more air */
     .hero {
-      padding: calc(3.8rem + clamp(2.2rem, 7vh, 4.5rem)) 0 clamp(3rem, 7vh, 4.75rem);
+      padding: calc(3.8rem + env(safe-area-inset-top, 0px) + clamp(2.2rem, 7vh, 4.5rem)) 0 clamp(3rem, 7vh, 4.75rem);
     }
     .hero h1 {
       font-size: clamp(3rem, 7vw, 5.1rem);
@@ -2585,6 +2603,17 @@
     .hero-portrait {
       max-width: 460px;
     }
+    @media (max-width: 860px) {
+      .hero {
+        padding: calc(3.4rem + env(safe-area-inset-top, 0px) + 1.15rem) 0 1.85rem;
+      }
+      .hero h1 { font-size: clamp(2.35rem, 9vw, 2.85rem); }
+      .langs { margin-bottom: 0.75rem; }
+      .comp-controls { flex-direction: column; align-items: stretch; }
+      .comp-play, .comp-copy { width: 100%; justify-content: center; }
+      .channels { gap: 0.65rem; }
+      .contact-tools { gap: 0.35rem; }
+    }
     @media (min-width: 960px) {
       .hero-grid {
         grid-template-columns: minmax(0, 1fr) minmax(340px, 0.9fr);
@@ -2657,109 +2686,6 @@
       position: relative;
     }
     .job:hover .job-main h3 { color: var(--accent-deep); }
-
-    /* Resume — letter on the desk, same object-craft as the portrait */
-    .resume-desk {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      padding: clamp(2.4rem, 5vw, 3.4rem) 0 clamp(2.8rem, 6vw, 4rem);
-      background: var(--ink);
-    }
-    .resume-desk::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(22,20,15,0.18), rgba(22,20,15,0.08) 28%, rgba(22,20,15,0.22)),
-        url("wash-parchment.jpg") center/cover no-repeat;
-      z-index: 0;
-      pointer-events: none;
-    }
-    .resume-desk > .wrap { position: relative; z-index: 1; }
-    .resume-desk .sec-head h2 { color: #fbf8f1; }
-    .resume-desk .sec-head .intro { color: rgba(251,248,241,0.72); }
-    .resume-desk .kicker { color: color-mix(in srgb, var(--accent) 85%, #fff); }
-    .resume-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin: 0 0 1.25rem;
-    }
-    .resume-actions a,
-    .resume-actions button {
-      display: inline-flex;
-      align-items: center;
-      min-height: 2.35rem;
-      padding: 0 0.95rem;
-      border-radius: 980px;
-      font: inherit;
-      font-size: 0.84rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      border: 1px solid rgba(251,248,241,0.22);
-      color: #fbf8f1;
-      background: rgba(22,20,15,0.28);
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
-    }
-    .resume-actions a:hover,
-    .resume-actions button:hover {
-      background: #fbf8f1;
-      color: var(--ink);
-      border-color: #fbf8f1;
-    }
-    .resume-actions a.is-primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-    .resume-actions a.is-primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
-    .resume-viewport {
-      position: relative;
-      width: min(100%, 52rem);
-      margin-inline: auto;
-      min-height: 12rem;
-    }
-    .resume-sheet {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 816px;
-      height: 1056px;
-      --resume-scale: 0.72;
-      --tilt-x: 0deg;
-      --tilt-y: 0deg;
-      transform:
-        translateX(-50%)
-        scale(var(--resume-scale))
-        rotateX(var(--tilt-x))
-        rotateY(var(--tilt-y));
-      transform-origin: top center;
-      transform-style: preserve-3d;
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow:
-        0 1px 0 rgba(251,248,241,0.18),
-        0 28px 64px rgba(22,20,15,0.38);
-      transition: transform 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out);
-      background: #fbf8f1;
-    }
-    .resume-desk.is-live .resume-sheet {
-      box-shadow:
-        0 1px 0 rgba(251,248,241,0.22),
-        0 36px 80px rgba(22,20,15,0.46);
-    }
-    .resume-sheet iframe {
-      width: 816px;
-      height: 1056px;
-      border: 0;
-      display: block;
-      background: #fbf8f1;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .resume-sheet { transition: none; }
-    }
 
     .contact {
       position: relative;
@@ -2840,7 +2766,7 @@
         grid-template-columns: 1fr;
         gap: 1.75rem;
         text-align: left;
-        padding-bottom: 6rem;
+        padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
       }
     }
 
@@ -2857,7 +2783,6 @@
       <a href="#work" data-nav>Experience</a>
       <a href="#offer" data-nav>Offer</a>
       <a href="#builds" data-nav>Builds &amp; AI</a>
-      <a href="#resume" data-nav>Resume</a>
       <div class="nav-reach" aria-label="Contact">
         <a class="nav-reach-mail" href="mailto:javy@javydiaz.com?subject=Capital%20trapped%20in%20the%20book&amp;body=Hi%20Javy%2C%0A%0AFound%20you%20on%20javydiaz.com.%20I%20run%20physical%20product.%20Capital%20is%20trapped%20in%20the%20book%2C%20and%20it%27s%20eating%20the%20week.%0A%0AWhat%27s%20frozen%20on%20my%20side%3A%0A%0A%0AWorth%20a%20conversation%3F">Email</a>
         <a class="nav-reach-text" href="sms:+12017263003?body=Hi%20Javy%2C%20found%20javydiaz.com.%20Physical%20product.%20Capital%20is%20trapped%20in%20the%20book.%20Open%20for%20a%20short%20conversation%3F">Text</a>
@@ -2874,8 +2799,8 @@
           <a href="https://sopita.gg" target="_blank" rel="noopener noreferrer">SOPITA.GG</a>
           &amp;
           <a href="https://bingobango.ai" target="_blank" rel="noopener noreferrer">BingoBango.ai</a>
-          · EN / ES / PT
         </p>
+        <p class="langs reveal">English · Spanish · Portuguese</p>
         <h1 class="reveal d1"><span class="name-text">Javier Diaz</span></h1>
         <p class="pitch reveal d1">I build the systems that calm the riptide.</p>
         <p class="body body--full reveal d2">
@@ -2930,7 +2855,7 @@
           </div>
           <span class="portrait-badge"><i aria-hidden="true"></i> Taking a few founder conversations</span>
         </div>
-        <p class="portrait-cap">Operating systems · EN / ES / PT</p>
+        <p class="portrait-cap">Operating systems</p>
       </div>
     </div>
   </header>
@@ -3286,33 +3211,6 @@
     </div>
   </section>
 
-  <section class="resume-desk" id="resume">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <p class="kicker reveal">Resume · One page</p>
-          <h2 class="reveal d1">The letter you can keep.</h2>
-        </div>
-        <p class="intro reveal d1">Same claims as the site. Print it, send it, pin it to a board.</p>
-      </div>
-      <div class="resume-actions reveal">
-        <a class="is-primary" href="Javier_Diaz_Leave_Behind.pdf">Download PDF</a>
-        <a href="leave-behind.html">Open full page</a>
-        <button type="button" id="resumePrint">Print</button>
-      </div>
-      <div class="resume-viewport" id="resumeViewport">
-        <div class="resume-sheet" id="resumeSheet" data-resume-tilt>
-          <iframe
-            id="resumeFrame"
-            src="leave-behind.html?embed=1"
-            title="Javier Diaz leave-behind resume"
-            loading="lazy"
-          ></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="contact" id="contact">
     <div class="wrap">
       <div class="contact-head reveal">
@@ -3353,7 +3251,7 @@
             <span class="channel-k">Call</span>
           </span>
           <span class="channel-v">(201) 726-3003</span>
-          <span class="channel-hint">Lyndhurst, NJ · EN / ES / PT</span>
+          <span class="channel-hint">Lyndhurst, NJ · English, Spanish, Portuguese</span>
           <span class="channel-go">Call now</span>
         </a>
       </div>
@@ -3363,14 +3261,13 @@
           <img src="javier-portrait.png" width="512" height="512" alt="Javier Diaz" decoding="async">
           <div>
             <p class="name">Javier Diaz · Javy</p>
-            <p class="meta">Founder seats open · Lyndhurst, NJ · EN / ES / PT</p>
+            <p class="meta">Founder seats open · Lyndhurst, NJ · English, Spanish, Portuguese</p>
           </div>
         </div>
         <div class="contact-tools">
           <button type="button" class="tool-btn" data-copy="javy@javydiaz.com">Copy email</button>
           <button type="button" class="tool-btn" data-copy="+12017263003">Copy phone</button>
-          <a class="tool-link" href="leave-behind.html">Leave-behind</a>
-          <a class="tool-link" href="Javier_Diaz_Leave_Behind.pdf">PDF</a>
+          <a class="tool-link" href="Javier_Diaz_Leave_Behind.pdf" download="Javier_Diaz_Leave_Behind.pdf">Download PDF</a>
           <a class="tool-link" href="https://x.com/JavyDiaz" target="_blank" rel="noopener noreferrer">X</a>
           <a class="tool-link" href="https://sopita.gg" target="_blank" rel="noopener noreferrer">SOPITA</a>
           <a class="tool-link" href="https://bingobango.ai" target="_blank" rel="noopener noreferrer">BingoBango</a>
@@ -3382,7 +3279,7 @@
   <footer class="site-end">
     <div>
       <p class="end-brand">Javier Diaz</p>
-      <p class="end-line">Systems that calm the riptide. Capital, service, network. EN / ES / PT.</p>
+      <p class="end-line">Systems that calm the riptide. Capital, service, network. English, Spanish, Portuguese.</p>
       <a class="end-cta" href="mailto:javy@javydiaz.com?subject=Capital%20trapped%20in%20the%20book&amp;body=Hi%20Javy%2C%0A%0AFound%20you%20on%20javydiaz.com.%20I%20run%20physical%20product.%20Capital%20is%20trapped%20in%20the%20book%2C%20and%20it%27s%20eating%20the%20week.%0A%0AWhat%27s%20frozen%20on%20my%20side%3A%0A%0A%0AWorth%20a%20conversation%3F">Email Javy</a>
     </div>
     <div class="end-col">
@@ -3391,8 +3288,7 @@
       <a href="#work">Experience</a>
       <a href="#offer">Offer</a>
       <a href="#builds">Builds &amp; AI</a>
-      <a href="#resume">Resume</a>
-      <a href="leave-behind.html">Leave-behind</a>
+      <a href="Javier_Diaz_Leave_Behind.pdf" download="Javier_Diaz_Leave_Behind.pdf">Download PDF</a>
     </div>
     <div class="end-col">
       <h4>Direct</h4>
@@ -3412,7 +3308,6 @@
     <button type="button" data-chapter="work" aria-label="Career"><span class="tip">Career</span></button>
     <button type="button" data-chapter="offer" aria-label="Partner"><span class="tip">Partner</span></button>
     <button type="button" data-chapter="builds" aria-label="Builds"><span class="tip">Builds</span></button>
-    <button type="button" data-chapter="resume" aria-label="Resume"><span class="tip">Resume</span></button>
     <button type="button" data-chapter="contact" aria-label="Contact"><span class="tip">Contact</span></button>
   </nav>
 
@@ -3536,7 +3431,7 @@
     var rail=document.getElementById("storyRail");
     var railBtns=rail ? [].slice.call(rail.querySelectorAll("[data-chapter]")) : [];
     var railFill=document.getElementById("railFill");
-    var chapters=["top","proof","work","offer","builds","resume","contact"];
+    var chapters=["top","proof","work","offer","builds","contact"];
     function onScroll(){
       var y=window.scrollY||0;
       if(nav) nav.classList.toggle("scrolled", y>12);
@@ -3590,8 +3485,14 @@
           if(sr.height>0 && sr.top<window.innerHeight) yBot=Math.max(navH+8, sr.top-20);
         }
         var botEl=document.elementFromPoint(x, yBot);
-        if(nav) nav.classList.toggle("is-night", lumOf(topEl)<0.42);
+        var night = lumOf(topEl)<0.42;
+        if(nav) nav.classList.toggle("is-night", night);
         if(sticky) sticky.classList.toggle("is-night", lumOf(botEl)<0.42);
+        var meta=document.getElementById("themeColorMeta");
+        if(meta){
+          var hex = night ? "#16140f" : "#f5f0e6";
+          if(meta.getAttribute("content")!==hex) meta.setAttribute("content", hex);
+        }
       }
       function onChromeScroll(){
         if(ticking) return;
@@ -3916,61 +3817,6 @@
   }
   stage.addEventListener('pointermove', onMove);
   stage.addEventListener('pointerleave', onLeave);
-})();
-
-(function () {
-  var view = document.getElementById("resumeViewport");
-  var sheet = document.getElementById("resumeSheet");
-  var desk = document.getElementById("resume");
-  var frame = document.getElementById("resumeFrame");
-  var printBtn = document.getElementById("resumePrint");
-  if (!view || !sheet) return;
-  var PAGE_W = 816;
-  var PAGE_H = 1056;
-  function size() {
-    var w = view.clientWidth;
-    var scale = Math.max(0.28, Math.min(1, w / PAGE_W));
-    sheet.style.setProperty("--resume-scale", String(scale));
-    view.style.height = Math.round(PAGE_H * scale) + "px";
-  }
-  if ("ResizeObserver" in window) new ResizeObserver(size).observe(view);
-  else window.addEventListener("resize", size, {passive: true});
-  size();
-  if (printBtn && frame) {
-    printBtn.addEventListener("click", function () {
-      try {
-        frame.contentWindow.focus();
-        frame.contentWindow.print();
-      } catch (err) {
-        window.open("leave-behind.html");
-      }
-    });
-  }
-  if (desk && "IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        desk.classList.toggle("is-live", e.isIntersecting);
-      });
-    }, {threshold: 0.28});
-    io.observe(desk);
-  }
-  if (!sheet.hasAttribute("data-resume-tilt")) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  if (window.matchMedia("(pointer: coarse)").matches) return;
-  var max = 5;
-  function onMove(e) {
-    var r = view.getBoundingClientRect();
-    var px = (e.clientX - r.left) / r.width - 0.5;
-    var py = (e.clientY - r.top) / r.height - 0.5;
-    sheet.style.setProperty("--tilt-y", (px * max) + "deg");
-    sheet.style.setProperty("--tilt-x", (-py * max) + "deg");
-  }
-  function onLeave() {
-    sheet.style.setProperty("--tilt-x", "0deg");
-    sheet.style.setProperty("--tilt-y", "0deg");
-  }
-  view.addEventListener("pointermove", onMove);
-  view.addEventListener("pointerleave", onLeave);
 })();
 </script>
 
