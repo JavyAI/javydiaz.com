@@ -41,20 +41,23 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,600;0,6..72,700;1,6..72,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #111111;
       --accent: #b6f400;
       --paper: #ffffff;
+      --desk: #c8c8c2;
       --muted: #555555;
-      --line: #111111;
+      --card: #f6fce6;
+      --found: #f3f3f3;
+      --display: "Newsreader", Georgia, serif;
       --body: "Source Sans 3", system-ui, sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     @page { size: letter; margin: 0; }
     html, body {
-      background: #f4f4f4;
+      background: var(--desk);
       color: var(--ink);
       font-family: var(--body);
       -webkit-font-smoothing: antialiased;
@@ -62,7 +65,7 @@
     a { color: inherit; text-decoration: none; }
     .toolbar {
       text-align: center;
-      padding: 0.85rem;
+      padding: 0.9rem 0.75rem 1rem;
       font-size: 0.88rem;
     }
     .toolbar a, .toolbar button {
@@ -71,229 +74,284 @@
       margin: 0 0.3rem;
       padding: 0.5rem 0.9rem;
       border-radius: 6px;
-      border: 1px solid #ccc;
+      border: 1px solid #b5b5b0;
       background: #fff;
       cursor: pointer;
       color: var(--ink);
       display: inline-block;
     }
+    .stage {
+      width: 8.5in;
+      margin: 0 auto;
+      padding-bottom: 2.4rem;
+    }
     .sheet {
-      width: min(8.5in, 100%);
-      min-height: 11in;
-      margin: 0 auto 1.25rem;
+      width: 8.5in;
+      height: 11in;
       background: var(--paper);
       color: var(--ink);
-      padding: 0.52in 0.55in 0.46in;
-      box-shadow: 0 12px 40px rgba(17,17,17,0.12);
-    }
-    .sheet-2 { padding-top: 0; }
-    .p2-bar {
+      box-shadow: 0 16px 44px rgba(17, 17, 17, 0.2), 0 2px 8px rgba(17, 17, 17, 0.08);
+      overflow: hidden;
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1rem;
+      flex-direction: column;
+    }
+    .sheet + .sheet { margin-top: 1.35rem; }
+    .hero,
+    .p2-bar {
       background: var(--ink);
       color: #fff;
-      margin: 0 -0.55in 0.42in;
-      padding: 0.28in 0.55in;
-    }
-    .p2-bar strong {
-      font-size: 18pt;
-      letter-spacing: -0.02em;
-    }
-    .p2-bar span {
-      font-size: 8.5pt;
-      font-weight: 500;
-      text-align: right;
-    }
-    .top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 1.2rem;
-      margin-bottom: 0.42rem;
+      gap: 1rem;
+      padding: 0.3in 0.48in 0.28in;
+      flex: 0 0 auto;
     }
-    .top h1 {
-      font-size: 28pt;
+    .hero h1,
+    .p2-bar strong {
+      font-family: var(--display);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 0.95;
     }
+    .hero h1 { font-size: 27pt; }
     .title-1 {
       color: var(--accent);
-      font-size: 12.5pt;
+      font-size: 11.4pt;
       font-weight: 700;
-      margin-top: 0.18rem;
-      letter-spacing: -0.015em;
+      margin-top: 0.16rem;
+      letter-spacing: -0.01em;
     }
     .title-2 {
-      font-size: 11pt;
+      font-size: 10.2pt;
       font-weight: 600;
-      margin-top: 0.08rem;
+      margin-top: 0.06rem;
+      color: #fff;
     }
     .contact {
       text-align: right;
-      font-size: 8.6pt;
-      line-height: 1.45;
-      color: var(--ink);
+      font-size: 8.2pt;
+      line-height: 1.42;
       font-weight: 500;
+      padding-top: 0.12rem;
+      color: #fff;
     }
     .contact a { font-weight: 600; }
+    .page {
+      padding: 0.28in 0.48in 0.3in;
+      flex: 1 1 auto;
+    }
     .lede {
       display: flex;
-      gap: 0.7rem;
-      align-items: flex-start;
-      margin: 0.42rem 0 0.32rem;
+      gap: 0.62rem;
+      align-items: stretch;
+      margin-bottom: 0.22rem;
     }
     .lede::before {
       content: "";
-      width: 5px;
-      flex: 0 0 5px;
-      align-self: stretch;
+      width: 6px;
+      flex: 0 0 6px;
       background: var(--accent);
     }
     .lede p {
       font-style: italic;
-      font-size: 12.25pt;
-      line-height: 1.28;
+      font-size: 12pt;
+      line-height: 1.26;
       font-weight: 500;
     }
     .summary {
-      font-size: 9.4pt;
-      line-height: 1.38;
-      margin-bottom: 0.42rem;
+      font-size: 8.55pt;
+      line-height: 1.34;
+      margin-bottom: 0.3rem;
     }
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.28rem;
-      margin-bottom: 0.5rem;
-    }
-    .stats div {
-      background: var(--accent);
-      color: var(--ink);
-      padding: 0.38rem 0.42rem 0.36rem;
-      border-top: 4px solid var(--ink);
-    }
-    .stats b {
-      display: block;
-      font-size: 16pt;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 0.18rem;
-    }
-    .stats span {
-      display: block;
-      font-size: 7.4pt;
-      line-height: 1.28;
-      font-weight: 600;
-    }
-    h2 {
-      font-size: 8.4pt;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      border-top: 2px solid var(--ink);
-      padding-top: 0.28rem;
-      margin: 0.42rem 0 0.32rem;
-    }
-    .job { margin-bottom: 0.38rem; }
-    .job-h {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.8rem;
-      align-items: baseline;
-    }
-    .job-h h3 { font-size: 10.4pt; font-weight: 700; }
-    .when { color: var(--accent); font-size: 9pt; font-weight: 700; white-space: nowrap; }
-    .where { font-size: 8.4pt; color: var(--muted); margin: 0.08rem 0 0.16rem; font-weight: 600; }
-    .job ul { padding-left: 0.95rem; }
-    .job li { font-size: 9pt; line-height: 1.34; margin-bottom: 0.1rem; }
+    .stats,
     .mini {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0.22rem;
-      margin-top: 0.28rem;
     }
+    .stats { margin-bottom: 0.34rem; }
+    .stats div,
     .mini div {
-      background: var(--accent);
-      padding: 0.28rem 0.32rem;
+      background: var(--card);
+      border-top: 4px solid var(--accent);
+      padding: 0.28rem 0.3rem 0.26rem;
     }
-    .mini b { display: block; font-size: 12pt; letter-spacing: -0.02em; }
-    .mini span { display: block; font-size: 7.1pt; font-weight: 600; line-height: 1.25; }
-    .proof li { font-size: 9.15pt; line-height: 1.38; margin-bottom: 0.22rem; }
+    .stats b,
+    .mini b {
+      display: block;
+      font-size: 14.5pt;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.12rem;
+    }
+    .mini b { font-size: 12.4pt; }
+    .stats span,
+    .mini span {
+      display: block;
+      font-size: 7pt;
+      line-height: 1.26;
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 7.7pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 0.12rem;
+      margin: 0.32rem 0 0.24rem;
+    }
+    .job { margin-bottom: 0.28rem; }
+    .job-h {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.7rem;
+      align-items: baseline;
+    }
+    .job-h h3 { font-size: 9.7pt; font-weight: 700; }
+    .when {
+      color: var(--accent);
+      font-size: 8.6pt;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .where {
+      font-size: 7.55pt;
+      color: var(--muted);
+      margin: 0.05rem 0 0.1rem;
+      font-weight: 600;
+      line-height: 1.28;
+    }
+    .job ul { padding-left: 0.88rem; }
+    .job li {
+      font-size: 8.05pt;
+      line-height: 1.28;
+      margin-bottom: 0.08rem;
+    }
+    .proof { padding-left: 0.88rem; }
+    .proof li {
+      font-size: 8.7pt;
+      line-height: 1.34;
+      margin-bottom: 0.18rem;
+    }
     .found {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.42rem 0.7rem;
+      gap: 0.28rem 0.32rem;
+      margin-bottom: 0.12rem;
     }
     .found article {
-      padding-left: 0.42rem;
-      border-left: 4px solid var(--accent);
+      background: var(--found);
+      border-left: 5px solid var(--accent);
+      padding: 0.28rem 0.34rem 0.26rem 0.36rem;
     }
-    .found h3 { font-size: 9.6pt; }
-    .found .when { display: block; margin: 0.08rem 0 0.12rem; }
-    .found p, .found li { font-size: 8.6pt; line-height: 1.34; }
-    .found ul { padding-left: 0.9rem; }
+    .found .job-h h3 { font-size: 8.7pt; }
+    .found .when { font-size: 8pt; }
+    .found p,
+    .found li {
+      font-size: 8pt;
+      line-height: 1.3;
+    }
+    .found ul { padding-left: 0.85rem; }
     .seat {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.28rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.2rem;
     }
     .seat div {
       background: var(--ink);
       color: #fff;
-      padding: 0.38rem 0.42rem 0.36rem;
-      border-top: 4px solid var(--accent);
+      padding: 0.32rem 0.34rem 0.3rem;
+      border-top: 3px solid var(--accent);
     }
     .seat b {
       display: block;
       color: var(--accent);
-      font-size: 8.2pt;
-      letter-spacing: 0.1em;
+      font-size: 7.7pt;
+      letter-spacing: 0.12em;
       margin-bottom: 0.12rem;
     }
-    .seat p { font-size: 8.5pt; line-height: 1.32; }
+    .seat p { font-size: 7.8pt; line-height: 1.28; }
     .stack {
       display: grid;
-      grid-template-columns: 8.4rem 1fr;
-      gap: 0.16rem 0.7rem;
-      font-size: 9pt;
-      line-height: 1.35;
+      grid-template-columns: 8.3rem 1fr;
+      gap: 0.14rem 0.7rem;
+      font-size: 8.6pt;
+      line-height: 1.32;
     }
     .stack dt { color: var(--accent); font-weight: 700; }
     .stack dd { font-weight: 500; }
+    .p2-bar {
+      align-items: baseline;
+      padding: 0.26in 0.48in;
+    }
+    .p2-bar strong { font-size: 20pt; }
+    .p2-meta {
+      text-align: right;
+      font-size: 8.3pt;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1.35;
+    }
+    .p2-meta i {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #fff;
+      margin: 0 0.38rem 0.12rem;
+      vertical-align: middle;
+      font-style: normal;
+    }
+    .p2-url { color: #e8e8e8; font-weight: 500; }
     .foot {
       display: flex;
       justify-content: space-between;
       gap: 1rem;
-      margin-top: 0.5rem;
-      padding-top: 0.28rem;
-      border-top: 1px solid var(--ink);
-      font-size: 8.4pt;
+      margin-top: 0.42rem;
+      padding-top: 0.18rem;
+      font-size: 8pt;
       font-weight: 600;
     }
+    .foot .right { color: #777; font-weight: 500; }
+    .hero, .p2-bar, .stats div, .mini div, .seat div {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
     @media print {
-      html, body { background: #fff !important; }
+      html, body {
+        background: #fff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
       .toolbar { display: none !important; }
+      .stage {
+        width: auto;
+        margin: 0;
+        padding: 0;
+      }
       .sheet {
         box-shadow: none !important;
         margin: 0 !important;
         width: 8.5in;
-        min-height: 11in;
+        height: 11in;
         page-break-after: always;
+        break-after: page;
       }
-      .sheet-2 { page-break-after: auto; }
-      .p2-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .stats div, .mini div, .seat div { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .sheet + .sheet { margin-top: 0 !important; }
+      .sheet-2 {
+        page-break-after: auto;
+        break-after: auto;
+      }
     }
-    @media (max-width: 720px) {
-      .sheet { padding: 1.1rem 1rem 1.2rem; min-height: 0; }
-      .p2-bar { margin: 0 -1rem 1rem; padding: 0.85rem 1rem; flex-direction: column; }
-      .top, .found, .seat, .stats, .mini, .stack, .foot { grid-template-columns: 1fr; }
-      .top { flex-direction: column; }
-      .contact { text-align: left; }
-      .stack { display: block; }
-      .stack dt { margin-top: 0.45rem; }
+    @media screen and (max-width: 8.7in) {
+      .scroller {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 0.7rem 0.4rem;
+      }
+      .stage { margin: 0; }
     }
   </style>
 </head>
@@ -301,145 +359,160 @@
   <div class="toolbar">
     <button type="button" onclick="window.print()">Print / Save as PDF</button>
     <a href="./">Full site</a>
-    <a href="mailto:javy@javydiaz.com">javy@javydiaz.com</a>
   </div>
 
-  <article class="sheet" aria-label="Resume page 1">
-    <header class="top">
-      <div>
-        <h1>Javier Diaz</h1>
-        <p class="title-1">Founder, SOPITA.GG &amp; BingoBango.ai</p>
-        <p class="title-2">Vice President, Global Supply Chain · Cra-Z-Art</p>
-      </div>
-      <div class="contact">
-        Lyndhurst, NJ<br>
-        <a href="tel:+12017263003">(201) 726-3003</a><br>
-        <a href="mailto:javy@javydiaz.com">javy@javydiaz.com</a><br>
-        <a href="https://javydiaz.com">javydiaz.com</a><br>
-        English · Spanish · Portuguese
-      </div>
-    </header>
+  <div class="scroller">
+    <div class="stage">
+      <article class="sheet" aria-label="Resume page 1">
+        <header class="hero">
+          <div>
+            <h1>Javier Diaz</h1>
+            <p class="title-1">Founder, SOPITA.GG &amp; BingoBango.ai</p>
+            <p class="title-2">Vice President, Global Supply Chain · Cra-Z-Art</p>
+          </div>
+          <div class="contact">
+            Lyndhurst, NJ<br>
+            <a href="tel:+12017263003">(201) 726-3003</a><br>
+            <a href="mailto:javy@javydiaz.com">javy@javydiaz.com</a> · <a href="https://javydiaz.com">javydiaz.com</a><br>
+            English · Spanish · Portuguese
+          </div>
+        </header>
 
-    <div class="lede">
-      <p>“He builds the structure that calms the chaos, so leadership can grow the company.”</p>
-    </div>
-    <p class="summary">
-      Founder of SOPITA.GG and BingoBango.ai. Sitting Vice President, Global Supply Chain at Cra-Z-Art.
-      ~$710M is working capital returned to the business on a managed book — not his money, not a fire sale.
-      Structure first. Swimming harder is not a strategy.
-    </p>
+        <div class="page">
+          <div class="lede">
+            <p>“He builds the structure that calms the chaos, so leadership can grow the company.”</p>
+          </div>
+          <p class="summary">
+            Founder of SOPITA.GG and BingoBango.ai. Sitting VP, Global Supply Chain at Cra-Z-Art. End-to-end planning, procurement, manufacturing, and logistics. ~$710M working capital returned to the business is the sharpest proof, not the whole seat. Managed book. System design. Not a fire sale.
+          </p>
 
-    <div class="stats">
-      <div><b>~$710M</b><span>Working capital returned to the business. BBB Group. 16 DCs. Managed book &gt;$900M → ~$190M.</span></div>
-      <div><b>90th</b><span>In-stock through COVID. Did not freeze the book. Repurposed U.S. plant capacity.</span></div>
-      <div><b>−17%</b><span>Logistics under tariffs. Landed-cost and make-vs-buy. Import or make it here.</span></div>
-      <div><b>4</b><span>Books integrated: RoseArt / Lewisburg, Lexibook, Top Secret Toys, Joker AG / Slimy.</span></div>
-    </div>
+          <div class="stats">
+            <div><b>~$710M</b><span>Working capital returned to the business. BBB Group. 16 DCs. Managed book &gt;$900M → ~$190M.</span></div>
+            <div><b>90th</b><span>In-stock through COVID. Did not freeze the book. Repurposed U.S. plant capacity.</span></div>
+            <div><b>−17%</b><span>Logistics under tariffs. Landed-cost and make-vs-buy. Import or make it here.</span></div>
+            <div><b>4</b><span>Books integrated: RoseArt / Lewisburg, Lexibook, Top Secret Toys, Joker AG / Slimy.</span></div>
+          </div>
 
-    <h2>Experience</h2>
-    <div class="job">
-      <div class="job-h">
-        <h3>Founder · SOPITA.GG &amp; BingoBango.ai</h3>
-        <p class="when">Present</p>
-      </div>
-      <ul>
-        <li>Product craft, shipping discipline, and the same ownership standard as the operating seat.</li>
-        <li>Structure first. Swimming harder is not a strategy.</li>
-      </ul>
-    </div>
-    <div class="job">
-      <div class="job-h">
-        <h3>Vice President, Global Supply Chain · LaRose Industries, LLC d/b/a Cra-Z-Art</h3>
-        <p class="when">2020 – Present</p>
-      </div>
-      <p class="where">Randolph, NJ · CEO-direct · 6 direct reports · Jacksonville + Lewisburg + import</p>
-      <ul>
-        <li><strong>COVID:</strong> repurposed U.S. capacity; 90th percentile in-stock; did not freeze the book; ~150 SKU/month NPI.</li>
-        <li><strong>Tariffs:</strong> landed-cost and make-vs-buy design; company 1.5M sq ft target; logistics −17%.</li>
-        <li><strong>Integrations:</strong> RoseArt / Rose Moon + Lewisburg pencil factory (2021 Mattel AST); Lexibook; Top Secret Toys (2024); Joker AG / Slimy (2025).</li>
-        <li><strong>Operations:</strong> inventory visibility for an $80M (at cost) obsolete book. S&amp;OP cadence the team can run.</li>
-        <li><strong>Stack:</strong> Fourth Shift (ERP/MRP), Monday.com, Salsify, Python, and SQL.</li>
-      </ul>
-    </div>
+          <h2>Experience</h2>
+          <div class="job">
+            <div class="job-h">
+              <h3>Founder · SOPITA.GG &amp; BingoBango.ai</h3>
+              <p class="when">Present</p>
+            </div>
+            <p class="where">Products I ship. Same ownership standard as the ops I run. Physical product under real constraint.</p>
+            <ul>
+              <li>Founder of SOPITA.GG and BingoBango.ai. Product craft and shipping discipline on the same bar I bring to hard supply-chain seats. Structure first. Swimming harder is not a strategy.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <div class="job-h">
+              <h3>Vice President, Global Supply Chain · LaRose Industries, LLC d/b/a Cra-Z-Art</h3>
+              <p class="when">2020 – Present</p>
+            </div>
+            <p class="where">Randolph, NJ · CEO-direct · 6 direct reports · planning, procurement, and logistics across Jacksonville, FL and Lewisburg, TN plants plus import · writing instruments, crafts, compounds, electronics.</p>
+            <ul>
+              <li>Lead end-to-end supply as a competitive seat: demand and supply planning, inventory policy, sourcing, manufacturing interface, NPI, and inbound logistics. CEO-direct operating cadence. Team of 6.</li>
+              <li><strong>COVID.</strong> Repurposed U.S. plant capacity instead of freezing buys. Held 90th percentile in-stock through the shock and a ~150 SKU/month NPI cadence with product development and sourcing. Launch, not replenishment alone.</li>
+              <li><strong>Tariffs.</strong> Designed the landed-cost and make-vs-buy path as U.S. manufacturing expanded (company target 1.5M sq ft). Dual source: import where it still wins, domestic where China cost broke. Cut logistics 17% across ocean, inbound, and DC.</li>
+              <li><strong>Integrations.</strong> Stood up supply for RoseArt / Rose Moon and the Lewisburg pencil factory (2021 Mattel AST carve-out), Lexibook, Top Secret Toys (2024), and Joker AG / Slimy (2025). Inventory, inbound, and first-build on one cadence. Lexibook as a book I owned, not a claimed acquisition.</li>
+              <li>Built the first inventory-visibility and disposition path for an $80M (at cost) obsolete book and installed a clean-base policy the planning team could run without hero exceptions.</li>
+              <li>Stood up S&amp;OP and encoded forecast, turns, order, and inventory policy on Fourth Shift (ERP/MRP), Monday.com, and Salsify, with Python and SQL as the decision layer, so the method ran without a war room.</li>
+            </ul>
+          </div>
 
-    <h2>Scale proof</h2>
-    <div class="job">
-      <div class="job-h">
-        <h3>Senior Manager, Replenishment · Bed Bath &amp; Beyond Group</h3>
-        <p class="when">2014 – 2020</p>
-      </div>
-      <p class="where">Union, NJ · 16 DCs · team of 5 · six banners + digital · company sales &gt;$11B</p>
-      <div class="mini">
-        <div><b>&gt;$900M</b><span>Managed inventory book at the start.</span></div>
-        <div><b>~$190M</b><span>Managed book at the end (79% reduction).</span></div>
-        <div><b>~$710M</b><span>Working capital returned to the business. System design, not a one-time purge.</span></div>
-        <div><b>16 DCs</b><span>Six banners plus digital. Team of 5. 90th percentile in-stock held.</span></div>
-      </div>
-    </div>
-  </article>
-
-  <article class="sheet sheet-2" aria-label="Resume page 2">
-    <div class="p2-bar">
-      <strong>Javier Diaz</strong>
-      <span>Founder, SOPITA.GG &amp; BingoBango.ai · VP, Global Supply Chain, Cra-Z-Art · javydiaz.com</span>
-    </div>
-
-    <h2>Scale proof · Bed Bath &amp; Beyond Group</h2>
-    <ul class="proof">
-      <li>Designed and owned end-to-end inventory management across 16 DCs: order, movement, and placement from vendor through the network to store and digital. 18+ forecast, turn, order-efficiency, and JIT methods. Automated buy / move / stop.</li>
-      <li>Bolstered replenishment strategy and in-stock / turn performance while taking a &gt;$900M managed book to ~$190M and returning <strong>~$710M working capital</strong> to the business by system design, not a purge.</li>
-      <li>Ran store banners and digital on one allocation and replenishment cadence so the book moved as one network, not six separate fires. Placement and flow, not hero coverage.</li>
-      <li>Encoded in-stock, turn, and order logic so a bench of 5 could run the book on tools the company already paid for. Process and governance, not a war room.</li>
-    </ul>
-
-    <h2>Foundation</h2>
-    <div class="found">
-      <article>
-        <h3>Sr. Planning &amp; Allocation Analyst · Baker &amp; Taylor</h3>
-        <span class="when">2012–2014</span>
-        <ul>
-          <li>Unlocked $140M open-to-buy by correcting Amazon replenishment failure modes.</li>
-          <li>Eliminated 95% of obsolete while protecting depth on live titles.</li>
-        </ul>
+          <h2>Scale Proof</h2>
+          <div class="job">
+            <div class="job-h">
+              <h3>Senior Manager, Replenishment · Bed Bath &amp; Beyond Group</h3>
+              <p class="when">2014 – 2020</p>
+            </div>
+            <p class="where">Union, NJ · 16 DCs · team of 5 · company sales &gt;$11B · inventory planning, demand forecasting, replenishment and allocation across Bed Bath &amp; Beyond, Harmon, buybuy BABY, Christmas Tree Shops, World Market, digital.</p>
+            <div class="mini">
+              <div><b>&gt;$900M</b><span>Managed inventory book at the start. Managed subset. Not company 10-K inventory.</span></div>
+              <div><b>~$190M</b><span>Managed book at the end. About 79% off. In-stock and turns held.</span></div>
+              <div><b>~$710M</b><span>Working capital returned to the business. System design, not a one-time purge.</span></div>
+              <div><b>16 DCs</b><span>Six banners plus digital. Team of 5. 90th percentile in-stock held.</span></div>
+            </div>
+          </div>
+        </div>
       </article>
-      <article>
-        <h3>Supply Chain Manager · Cherrydale Farms</h3>
-        <span class="when">2008–2009</span>
-        <p>Physical-product supply for a seasonal fundraising and commercial food book.</p>
-      </article>
-      <article>
-        <h3>Demand &amp; Supply Planning Manager · Cra-Z-Art</h3>
-        <span class="when">2009–2012</span>
-        <p>Inventory, turns, and obsolete on a physical-product book. First tour at the company later run as VP.</p>
-      </article>
-      <article>
-        <h3>Store Analyst · The Children's Place</h3>
-        <span class="when">2006–2008</span>
-        <p>Specialty retail pace. Early CEO-direct exposure.</p>
+
+      <article class="sheet sheet-2" aria-label="Resume page 2">
+        <div class="p2-bar">
+          <strong>Javier Diaz</strong>
+          <p class="p2-meta">
+            <span>Founder, SOPITA.GG &amp; BingoBango.ai</span><i></i><span>VP, Global Supply Chain, Cra-Z-Art</span><i></i><span class="p2-url">javydiaz.com</span>
+          </p>
+        </div>
+
+        <div class="page">
+          <h2>Scale Proof · Bed Bath &amp; Beyond Group</h2>
+          <ul class="proof">
+            <li>Designed and owned end-to-end inventory management across 16 DCs: order, movement, and placement from vendor through the network to store and digital. 18+ forecast, turn, order-efficiency, and JIT methods. Automated buy / move / stop.</li>
+            <li>Bolstered replenishment strategy and in-stock / turn performance while taking a &gt;$900M managed book to ~$190M and returning ~$710M working capital to the business by system design, not a purge.</li>
+            <li>Ran store banners and digital on one allocation and replenishment cadence so the book moved as one network, not six separate fires. Placement and flow, not hero coverage.</li>
+            <li>Encoded in-stock, turn, and order logic so a bench of 5 could run the book on tools the company already paid for. Process and governance, not a war room.</li>
+          </ul>
+
+          <h2>Foundation</h2>
+          <div class="found">
+            <article>
+              <div class="job-h">
+                <h3>Sr. Planning &amp; Allocation Analyst · Baker &amp; Taylor</h3>
+                <span class="when">2012–2014</span>
+              </div>
+              <ul>
+                <li>Unlocked $140M open-to-buy by correcting Amazon replenishment failure modes.</li>
+                <li>Eliminated 95% of obsolete while protecting depth on live titles.</li>
+              </ul>
+            </article>
+            <article>
+              <div class="job-h">
+                <h3>Supply Chain Manager · Cherrydale Farms</h3>
+                <span class="when">2008–2009</span>
+              </div>
+              <p>Physical-product supply for a seasonal fundraising and commercial food book.</p>
+            </article>
+            <article>
+              <div class="job-h">
+                <h3>Demand &amp; Supply Planning Manager · Cra-Z-Art</h3>
+                <span class="when">2009–2012</span>
+              </div>
+              <p>Inventory, turns, and obsolete on a physical-product book. First tour at the company later run as VP.</p>
+            </article>
+            <article>
+              <div class="job-h">
+                <h3>Store Analyst · The Children's Place</h3>
+                <span class="when">2006–2008</span>
+              </div>
+              <p>Specialty retail pace. Early CEO-direct exposure.</p>
+            </article>
+          </div>
+
+          <h2>How the Seat Runs</h2>
+          <div class="seat">
+            <div><b>S&amp;OP</b><p>Demand, supply, capacity, inventory policy. Cadence the team can run.</p></div>
+            <div><b>Capital</b><p>Working capital, obsolete path, clean-base. Free the book without starving live SKUs.</p></div>
+            <div><b>Capacity</b><p>Plants plus import. Landed-cost. Make-vs-buy. Dual path under tariffs.</p></div>
+            <div><b>NPI</b><p>~150 SKUs/month with PD and sourcing. Integrations on one first-build cadence.</p></div>
+          </div>
+
+          <h2>Stack</h2>
+          <dl class="stack">
+            <dt>Factory ERP / MRP</dt><dd>Fourth Shift (Infor)</dd>
+            <dt>Ops / PIM</dt><dd>Monday.com · Salsify</dd>
+            <dt>Decision layer</dt><dd>Python · Google Cloud SQL · MySQL · Claude Code · GitHub Copilot</dd>
+            <dt>Methods</dt><dd>18+ forecast, turns, order efficiency, JIT, replenishment · buy / move / stop · S&amp;OP · allocation</dd>
+            <dt>Live use</dt><dd>Anthropic, NVIDIA, Apple developer-track. Editor tools support the method. Capital, service, and network still lead.</dd>
+          </dl>
+
+          <footer class="foot">
+            <div>BBA, Business Management · Fort Hays State University · 2011–2015</div>
+            <div class="right">javy@javydiaz.com · javydiaz.com · (201) 726-3003</div>
+          </footer>
+        </div>
       </article>
     </div>
-
-    <h2>How the seat runs</h2>
-    <div class="seat">
-      <div><b>S&amp;OP</b><p>Demand, supply, capacity, inventory policy. Cadence the team can run.</p></div>
-      <div><b>Capital</b><p>Working capital, obsolete path, clean-base. Free the book without starving live SKUs.</p></div>
-      <div><b>Capacity</b><p>Plants plus import. Landed-cost. Make-vs-buy. Dual path under tariffs.</p></div>
-      <div><b>NPI</b><p>~150 SKUs/month with PD and sourcing. Integrations on one first-build cadence.</p></div>
-    </div>
-
-    <h2>Stack</h2>
-    <dl class="stack">
-      <dt>Factory ERP / MRP</dt><dd>Fourth Shift (Infor)</dd>
-      <dt>Ops / PIM</dt><dd>Monday.com · Salsify</dd>
-      <dt>Decision layer</dt><dd>Python · Google Cloud SQL · MySQL · Claude Code · GitHub Copilot</dd>
-      <dt>Methods</dt><dd>18+ forecast, turns, order efficiency, JIT, replenishment · buy / move / stop · S&amp;OP · allocation</dd>
-      <dt>Live use</dt><dd>Anthropic, NVIDIA, Apple developer-track. Editor tools support the method. Capital, service, and network still lead.</dd>
-    </dl>
-
-    <footer class="foot">
-      <div>BBA, Business Management · Fort Hays State University · 2011–2015</div>
-      <div>javy@javydiaz.com · javydiaz.com · (201) 726-3003</div>
-    </footer>
-  </article>
+  </div>
 </body>
 </html>
