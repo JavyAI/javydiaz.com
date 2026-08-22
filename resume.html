@@ -50,7 +50,7 @@
       --desk: #c8c8c2;
       --muted: #555555;
       --card: #f6fce6;
-      --found: #f3f3f3;
+      --found: #ececec;
       --display: "Newsreader", Georgia, serif;
       --body: "Source Sans 3", system-ui, sans-serif;
     }
@@ -114,18 +114,18 @@
       letter-spacing: -0.03em;
       line-height: 0.95;
     }
-    .hero h1 { font-size: 27pt; }
+    .hero h1 { font-size: 28pt; }
     .title-1 {
       color: var(--accent);
-      font-size: 11.4pt;
+      font-size: 12pt;
       font-weight: 700;
-      margin-top: 0.16rem;
+      margin-top: 0.18rem;
       letter-spacing: -0.01em;
     }
     .title-2 {
-      font-size: 10.2pt;
+      font-size: 10.6pt;
       font-weight: 600;
-      margin-top: 0.06rem;
+      margin-top: 0.07rem;
       color: #fff;
     }
     .contact {
@@ -138,8 +138,12 @@
     }
     .contact a { font-weight: 600; }
     .page {
-      padding: 0.28in 0.48in 0.3in;
+      padding: 0.32in 0.48in 0.34in;
       flex: 1 1 auto;
+    }
+    .sheet-2 .page {
+      display: flex;
+      flex-direction: column;
     }
     .lede {
       display: flex;
@@ -155,14 +159,14 @@
     }
     .lede p {
       font-style: italic;
-      font-size: 12pt;
-      line-height: 1.26;
+      font-size: 13pt;
+      line-height: 1.28;
       font-weight: 500;
     }
     .summary {
-      font-size: 8.55pt;
-      line-height: 1.34;
-      margin-bottom: 0.3rem;
+      font-size: 9.05pt;
+      line-height: 1.36;
+      margin-bottom: 0.36rem;
     }
     .stats,
     .mini {
@@ -170,46 +174,46 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 0.22rem;
     }
-    .stats { margin-bottom: 0.34rem; }
+    .stats { margin-bottom: 0.4rem; }
     .stats div,
     .mini div {
       background: var(--card);
       border-top: 4px solid var(--accent);
-      padding: 0.28rem 0.3rem 0.26rem;
+      padding: 0.32rem 0.34rem 0.3rem;
     }
     .stats b,
     .mini b {
       display: block;
-      font-size: 14.5pt;
+      font-size: 15.5pt;
       letter-spacing: -0.03em;
       line-height: 1;
-      margin-bottom: 0.12rem;
+      margin-bottom: 0.14rem;
     }
-    .mini b { font-size: 12.4pt; }
+    .mini b { font-size: 13pt; }
     .stats span,
     .mini span {
       display: block;
-      font-size: 7pt;
-      line-height: 1.26;
+      font-size: 7.2pt;
+      line-height: 1.28;
       font-weight: 600;
     }
     h2 {
-      font-size: 7.7pt;
+      font-size: 7.8pt;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       font-weight: 700;
       border-bottom: 1px solid var(--ink);
-      padding-bottom: 0.12rem;
-      margin: 0.32rem 0 0.24rem;
+      padding-bottom: 0.14rem;
+      margin: 0.4rem 0 0.28rem;
     }
-    .job { margin-bottom: 0.28rem; }
+    .job { margin-bottom: 0.34rem; }
     .job-h {
       display: flex;
       justify-content: space-between;
       gap: 0.7rem;
       align-items: baseline;
     }
-    .job-h h3 { font-size: 9.7pt; font-weight: 700; }
+    .job-h h3 { font-size: 10pt; font-weight: 700; }
     .when {
       color: var(--accent);
       font-size: 8.6pt;
@@ -217,68 +221,70 @@
       white-space: nowrap;
     }
     .where {
-      font-size: 7.55pt;
+      font-size: 7.75pt;
       color: var(--muted);
-      margin: 0.05rem 0 0.1rem;
+      margin: 0.06rem 0 0.12rem;
       font-weight: 600;
-      line-height: 1.28;
+      line-height: 1.3;
     }
     .job ul { padding-left: 0.88rem; }
     .job li {
-      font-size: 8.05pt;
-      line-height: 1.28;
-      margin-bottom: 0.08rem;
+      font-size: 8.4pt;
+      line-height: 1.3;
+      margin-bottom: 0.1rem;
     }
     .proof { padding-left: 0.88rem; }
     .proof li {
-      font-size: 8.7pt;
-      line-height: 1.34;
-      margin-bottom: 0.18rem;
+      font-size: 9.15pt;
+      line-height: 1.38;
+      margin-bottom: 0.22rem;
     }
     .found {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.28rem 0.32rem;
-      margin-bottom: 0.12rem;
+      gap: 0.32rem 0.36rem;
+      margin-bottom: 0.18rem;
     }
     .found article {
       background: var(--found);
       border-left: 5px solid var(--accent);
-      padding: 0.28rem 0.34rem 0.26rem 0.36rem;
+      padding: 0.34rem 0.38rem 0.32rem 0.4rem;
     }
-    .found .job-h h3 { font-size: 8.7pt; }
-    .found .when { font-size: 8pt; }
+    .found .job-h { align-items: flex-start; }
+    .found .job-h h3 { font-size: 9pt; line-height: 1.2; }
+    .found .when { font-size: 8.2pt; }
     .found p,
     .found li {
-      font-size: 8pt;
-      line-height: 1.3;
+      font-size: 8.25pt;
+      line-height: 1.32;
     }
     .found ul { padding-left: 0.85rem; }
     .seat {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.2rem;
+      gap: 0.22rem;
     }
     .seat div {
       background: var(--ink);
       color: #fff;
-      padding: 0.32rem 0.34rem 0.3rem;
+      padding: 0.4rem 0.38rem 0.38rem;
       border-top: 3px solid var(--accent);
     }
     .seat b {
       display: block;
       color: var(--accent);
-      font-size: 7.7pt;
+      font-size: 8pt;
       letter-spacing: 0.12em;
-      margin-bottom: 0.12rem;
+      text-transform: uppercase;
+      margin-bottom: 0.14rem;
     }
-    .seat p { font-size: 7.8pt; line-height: 1.28; }
+    .seat p { font-size: 8.15pt; line-height: 1.3; }
     .stack {
       display: grid;
       grid-template-columns: 8.3rem 1fr;
-      gap: 0.14rem 0.7rem;
-      font-size: 8.6pt;
-      line-height: 1.32;
+      gap: 0.2rem 0.7rem;
+      font-size: 9pt;
+      line-height: 1.38;
     }
     .stack dt { color: var(--accent); font-weight: 700; }
     .stack dd { font-weight: 500; }
@@ -309,9 +315,9 @@
       display: flex;
       justify-content: space-between;
       gap: 1rem;
-      margin-top: 0.42rem;
-      padding-top: 0.18rem;
-      font-size: 8pt;
+      margin-top: auto;
+      padding-top: 0.28rem;
+      font-size: 8.2pt;
       font-weight: 600;
     }
     .foot .right { color: #777; font-weight: 500; }
