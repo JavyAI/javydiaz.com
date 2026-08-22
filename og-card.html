@@ -10,8 +10,8 @@
       width: 1200px;
       height: 630px;
       overflow: hidden;
-      background: #f5f0e6;
-      color: #16140f;
+      background: #ffffff;
+      color: #111111;
       font-family: "Source Sans 3", system-ui, sans-serif;
     }
     .card {
@@ -23,36 +23,41 @@
       align-items: center;
       padding: 52px 48px 52px 56px;
       gap: 8px;
+      background: #ffffff;
     }
     .bg {
       position: absolute;
       inset: 0;
       background:
-        url("og-bg-current.jpg") center/cover no-repeat;
-    }
-    .bg::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg,
-          rgba(245, 240, 230, 0.42) 0%,
-          rgba(245, 240, 230, 0.18) 32%,
-          transparent 55%);
+        radial-gradient(ellipse 55% 60% at 88% 20%, rgba(182, 244, 0, 0.28), transparent 60%),
+        #ffffff;
     }
     .left, .right { position: relative; z-index: 2; }
     .left {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      max-width: 34rem;
+      max-width: 36rem;
     }
     .kicker {
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #b84732;
+      color: #111111;
+      margin-bottom: 10px;
+    }
+    .role {
+      font-size: 18px;
+      font-weight: 700;
+      color: #b6f400;
+      letter-spacing: -0.015em;
+      margin-bottom: 6px;
+    }
+    .role-2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111111;
       margin-bottom: 14px;
     }
     h1 {
@@ -61,7 +66,7 @@
       font-weight: 500;
       letter-spacing: -0.035em;
       line-height: 0.92;
-      color: #16140f;
+      color: #111111;
     }
     h1::after {
       content: "";
@@ -69,33 +74,33 @@
       width: 4.4rem;
       height: 3px;
       margin: 16px 0 18px;
-      background: #b84732;
+      background: #b6f400;
       border-radius: 2px;
     }
     .pitch {
       font-family: "Newsreader", Georgia, serif;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 500;
       font-style: italic;
       letter-spacing: -0.02em;
       line-height: 1.22;
-      max-width: 16ch;
-      color: #3d3a34;
+      max-width: 22ch;
+      color: #111111;
     }
     .proof {
       margin-top: 22px;
       font-size: 15px;
       font-weight: 600;
-      color: #5c574e;
+      color: #555555;
       letter-spacing: -0.01em;
     }
-    .proof b { color: #b84732; font-weight: 700; }
+    .proof b { color: #111111; font-weight: 700; }
     .url {
       margin-top: 20px;
       font-size: 15px;
       font-weight: 600;
       letter-spacing: 0.02em;
-      color: #5c574e;
+      color: #555555;
     }
     .right {
       display: flex;
@@ -114,20 +119,20 @@
       object-fit: cover;
       border-radius: 22px;
       box-shadow:
-        0 1px 0 rgba(22, 20, 15, 0.06),
-        0 28px 56px rgba(22, 20, 15, 0.18);
+        0 1px 0 rgba(17, 17, 17, 0.06),
+        0 28px 56px rgba(17, 17, 17, 0.18);
     }
     .chip {
       position: absolute;
       right: -10px;
       bottom: 26px;
-      background: #16140f;
-      color: #fbf8f1;
+      background: #111111;
+      color: #ffffff;
       border-radius: 14px;
       padding: 12px 16px 10px;
-      border-left: 4px solid #b84732;
+      border-left: 4px solid #b6f400;
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-      min-width: 138px;
+      min-width: 158px;
     }
     .chip .n {
       font-family: "Newsreader", Georgia, serif;
@@ -139,7 +144,7 @@
     .chip .l {
       font-size: 11px;
       font-weight: 600;
-      color: rgba(251, 248, 241, 0.58);
+      color: rgba(255, 255, 255, 0.58);
       margin-top: 4px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -150,11 +155,13 @@
   <div class="card">
     <div class="bg" aria-hidden="true"></div>
     <div class="left">
-      <p class="kicker">Physical product · Structure that calms</p>
+      <p class="kicker">javydiaz.com</p>
       <h1>Javier Diaz</h1>
-      <p class="pitch">I place the structure that calms the riptide.</p>
-      <p class="proof">Capital · service · network · systems</p>
-      <p class="url">javydiaz.com · @JavyDiaz</p>
+      <p class="role">Founder, SOPITA.GG &amp; BingoBango.ai</p>
+      <p class="role-2">Vice President, Global Supply Chain · Cra-Z-Art</p>
+      <p class="pitch">He builds the structure that calms the chaos.</p>
+      <p class="proof"><b>~$710M</b> working capital returned to the business</p>
+      <p class="url">English · Spanish · Portuguese</p>
     </div>
     <div class="right">
       <div class="frame">

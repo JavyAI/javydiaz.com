@@ -1,12 +1,12 @@
 {
   "name": "Javier Diaz",
   "short_name": "Javy",
-  "description": "Systems that calm operational chaos for physical-product companies.",
+  "description": "Founder, SOPITA.GG & BingoBango.ai. Vice President, Global Supply Chain, Cra-Z-Art.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f5f0e6",
-  "theme_color": "#f5f0e6",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
   "icons": [
     {
       "src": "/icon-192.png",
