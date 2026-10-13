@@ -6,7 +6,8 @@ import { getStore } from "@netlify/blobs";
 import { createHash } from "node:crypto";
 
 const STORE = "jd-visits";
-const SALT = (typeof Netlify !== "undefined" && Netlify.env.get("JD_VISIT_SALT")) || "12ae3fcae46f39bcd8a2aed3a19831950e26d0230e833578";
+// Salt comes only from the site env var; if it is missing the counter fails closed (no hashing, no write).
+const SALT = (typeof Netlify !== "undefined" && Netlify.env.get("JD_VISIT_SALT")) || "";
 const BOT_RE = /bot|crawl|spider|headless|curl|python|wget|preview|facebookexternalhit/i;
 const COUNT_HOSTS = new Set(["javydiaz.com", "www.javydiaz.com"]);
 
@@ -39,6 +40,7 @@ const bump = (obj, k) => { obj[k] = (obj[k] || 0) + 1; };
 export default async (req, context) => {
   try {
     if (req.method !== "POST") return done("skip-method");
+    if (!SALT) return done("skip-nosalt");
     const ua = req.headers.get("user-agent") || "";
     if (!ua || BOT_RE.test(ua)) return done("skip-ua");
     const host = (req.headers.get("host") || new URL(req.url).hostname || "").toLowerCase().split(":")[0];
@@ -78,3 +80,4 @@ export default async (req, context) => {
 };
 
 export const config = { path: "/api/hit" };
+
