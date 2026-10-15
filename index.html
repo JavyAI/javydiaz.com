@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Javier Diaz — Founder, SOPITA.GG &amp; BingoBango.ai · VP, Global Supply Chain, Cra-Z-Art</title>
   <meta name="description" content="Javier Diaz, Founder of SOPITA.GG and BingoBango.ai, and Vice President, Global Supply Chain at Cra-Z-Art. Structure that calms the chaos. Working capital returned to the business: ~$710M. English, Spanish, Portuguese.">
-  <meta name="theme-color" content="#ffffff" id="themeColorMeta">
+  <meta name="theme-color" content="#fdf3e3" id="themeColorMeta">
   <meta name="color-scheme" content="light">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -2800,6 +2800,30 @@
       .hero-figures b { font-size: 1.32rem; }
     }
 
+    /* Warm colorway (preview). Portrait file is untouched.
+       Sampled ground from javier-portrait-hero.png paper: #f8dcb0.
+       Page cream is a 65% white tint of that sample so accent words
+       (#5a7a00) clear WCAG AA. #6b8600 is lighter and does not.
+       Ink sections stay #111. Proof and offer stay white. */
+    :root {
+      --cream-sample: #f8dcb0;
+      --cream: #fdf3e3;
+    }
+    .nav:not(.is-night) { background-color: var(--cream); }
+    .hero { background-color: var(--cream); }
+    #proof { background-color: #ffffff; }
+    #work.section.soft,
+    #builds.section.soft {
+      background: var(--cream);
+      border-block-color: rgba(17, 17, 17, 0.08);
+    }
+    #offer.section.band { background: #ffffff; }
+    .sticky:not(.is-night) { background-color: var(--cream); }
+    @keyframes safariOverscroll {
+      0%, 86% { background-color: #fdf3e3; }
+      100% { background-color: #111111; }
+    }
+
   </style>
 </head>
 <body>
@@ -3550,7 +3574,7 @@
         if(nav) nav.classList.toggle("is-night", night);
         if(sticky) sticky.classList.toggle("is-night", botNight);
         document.documentElement.classList.toggle("is-night-root", night);
-        var hex = night ? "#111111" : "#ffffff";
+        var hex = night ? "#111111" : "#fdf3e3";
         var meta=document.getElementById("themeColorMeta");
         if(meta && meta.getAttribute("content")!==hex){
           var next=document.createElement("meta");
